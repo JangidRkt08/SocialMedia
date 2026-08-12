@@ -1,0 +1,38 @@
+# Environment / secrets
+.env
+.env.*
+!.env.example
+.envrc
+
+# Go build output
+/bin/
+/build/
+/dist/
+
+# Air live-reload
+/tmp/
+/.air/
+
+# Logs
+*.log
+*.log.*
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+*.iml
+
+# VS Code
+.vscode/
+
+# Test / coverage
+coverage.out
+coverage.html
+
+# Go workspace
+go.work
+go.work.sum

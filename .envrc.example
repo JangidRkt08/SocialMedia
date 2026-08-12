@@ -1,0 +1,10 @@
+export APP_ADDR=":3000"
+
+export POSTGRES_DB="dbName"
+export POSTGRES_USER="username"
+export POSTGRES_PASSWORD="password"
+export DB_ADDR="postgres://<username>:<userpassword>@localhost:5432/<dbName>?sslmode=disable"
+
+export DB_MAX_OPEN_CONNS="30"
+export DB_MAX_IDLE_CONNS="30"
+export DB_MAX_IDLE_TIME="15m"
