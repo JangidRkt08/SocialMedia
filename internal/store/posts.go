@@ -27,11 +27,12 @@ func (s *PostStore) Create(ctx context.Context, post *Post) error {
 	`
 
 	err := s.db.QueryRowContext(
+		// FIX/Note: keep these args in same order as provided in the query (did mistake->solved)
 		ctx,
 		query,
 		post.Content,
-		post.UserID,
 		post.Title,
+		post.UserID,
 		pq.Array(post.Tags),
 	).Scan(
 		&post.ID,
