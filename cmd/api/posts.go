@@ -22,8 +22,8 @@ func (app *application) createPostHandler(w http.ResponseWriter, r *http.Request
 		return
 	}
 	// userId := 1
-	if err := Validate.Struct(payload); err != nil{
-		app.badRequestResponse(w,r,err)
+	if err := Validate.Struct(payload); err != nil {
+		app.badRequestResponse(w, r, err)
 		return
 	}
 	post := &store.Post{
@@ -66,6 +66,14 @@ func (app *application) getPostHandler(w http.ResponseWriter, r *http.Request) {
 		}
 		return
 	}
+
+	comments, err := app.store.Comments.GetByPostID(ctx, id)
+	if err != nil {
+		app.internalServerError(w, r, err)
+		return
+	}
+
+	post.Comments = comments
 
 	if err := writeJSON(w, http.StatusOK, post); err != nil {
 		app.internalServerError(w, r, err)
