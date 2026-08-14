@@ -21,11 +21,11 @@ type User struct {
 // 	hash []byte 
 // }
 
-type UsersStore struct {
+type UserStore struct {
 	db *sql.DB
 }
 
-func (s *UsersStore) Create(ctx context.Context, user *User) error {
+func (s *UserStore) Create(ctx context.Context, user *User) error {
 	query := `
 	INSERT INTO users (username, password, email) VALUES($1, $2, $3)
 	RETURNING id, created_at
