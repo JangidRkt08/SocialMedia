@@ -7,18 +7,38 @@ import (
 	"github.com/sikozonpc/social/internal/env"
 	"github.com/sikozonpc/social/internal/store"
 )
-const version = "0.0.1"
 
+const version = "0.0.2"
+
+//	@title			GOSocial API
+//	@description	API for GOSocial, xkcnkvxa social network for Gophers
+//	@termsOfService	http://swagger.io/terms/
+
+//	@contact.name	API Support
+//	@contact.url	http://www.swagger.io/support
+//	@contact.email	support@swagger.io
+
+//	@license.name	Apache 2.0
+//	@license.url	http://www.apache.org/licenses/LICENSE-2.0.html
+
+// @host						localhost:3000
+// @BasePath					/v1
+//
+// @securityDefinitions.apikey	ApiKeyAuth
+// @in							header
+// @name						Authorisation
+// @description
 func main() {
 	cfg := config{
-		addr: env.GetString("APP_ADDR", ":3001"),
+		addr:   env.GetString("APP_ADDR", ":3001"),
+		apiURL: env.GetString("EXTERNAL_URL", "localhost:3000"),
 		db: dbConfig{
 			addr:         env.GetString("DB_ADDR", ""),
 			maxOpenConns: env.GetInt("DB_MAX_OPEN_CONNS", 30),
 			maxIdleConns: env.GetInt("DB_MAX_IDLE_CONNS", 30),
 			maxIdleTime:  env.GetString("DB_MAX_IDLE_TIME", "15min"),
 		},
-		env: env.GetString("ENV","development"),
+		env: env.GetString("ENV", "development"),
 	}
 	db, err := db.New(cfg.db.addr,
 		cfg.db.maxIdleConns,
