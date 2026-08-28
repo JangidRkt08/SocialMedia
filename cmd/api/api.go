@@ -5,10 +5,10 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/JangidRkt08/SocialMedia/docs"
+	"github.com/JangidRkt08/SocialMedia/internal/store"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
-	"github.com/sikozonpc/social/docs"
-	"github.com/sikozonpc/social/internal/store"
 	httpSwagger "github.com/swaggo/http-swagger/v2"
 )
 

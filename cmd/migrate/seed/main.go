@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/sikozonpc/social/internal/db"
-	"github.com/sikozonpc/social/internal/env"
-	"github.com/sikozonpc/social/internal/store"
+	"github.com/JangidRkt08/SocialMedia/internal/db"
+	"github.com/JangidRkt08/SocialMedia/internal/env"
+	"github.com/JangidRkt08/SocialMedia/internal/store"
 )
 
 func main() {

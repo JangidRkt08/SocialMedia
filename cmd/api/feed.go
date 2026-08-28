@@ -3,7 +3,7 @@ package main
 import (
 	"net/http"
 
-	"github.com/sikozonpc/social/internal/store"
+	"github.com/JangidRkt08/SocialMedia/internal/store"
 )
 
 // getUserFeedHandler godoc

@@ -6,8 +6,8 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/JangidRkt08/SocialMedia/internal/store"
 	"github.com/go-chi/chi/v5"
-	"github.com/sikozonpc/social/internal/store"
 )
 
 type postKey string
