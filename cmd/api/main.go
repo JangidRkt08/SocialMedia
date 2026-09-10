@@ -1,6 +1,8 @@
 package main
 
 import (
+	"time"
+
 	"github.com/JangidRkt08/SocialMedia/internal/db"
 	"github.com/JangidRkt08/SocialMedia/internal/env"
 	"github.com/JangidRkt08/SocialMedia/internal/store"
@@ -38,6 +40,8 @@ func main() {
 			maxIdleTime:  env.GetString("DB_MAX_IDLE_TIME", "15min"),
 		},
 		env: env.GetString("ENV", "development"),
+		mail: mailConfig{
+			exp: time.Hour * 24 * 3}, //3 days
 	}
 	// Logger
 	logger := zap.Must(zap.NewProduction()).Sugar()
