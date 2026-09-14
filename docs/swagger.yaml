@@ -16,6 +16,23 @@ definitions:
     - content
     - title
     type: object
+  main.RegisterUserPayload:
+    properties:
+      email:
+        maxLength: 225
+        type: string
+      password:
+        maxLength: 72
+        minLength: 3
+        type: string
+      username:
+        maxLength: 100
+        type: string
+    required:
+    - email
+    - password
+    - username
+    type: object
   main.UpdatePostPayload:
     properties:
       content:
@@ -120,6 +137,34 @@ info:
   termsOfService: http://swagger.io/terms/
   title: GOSocial API
 paths:
+  /authentication/user:
+    post:
+      consumes:
+      - application/json
+      description: Registers a user
+      parameters:
+      - description: User credentials
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/main.RegisterUserPayload'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Regitered
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+      summary: Registers a user
+      tags:
+      - authentication
   /health:
     get:
       description: Healthcheck endpoint
