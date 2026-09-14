@@ -16,6 +16,11 @@ type RegisterUserPayload struct {
 	Password string `json:"password" validate:"required,min=3,max=72"`
 }
 
+type UserWithToken struct {
+	*store.User
+	Token string `json:"token"`
+}
+
 // registerUserHandler godoc
 //
 //	@Summary		Registers a user
@@ -24,7 +29,7 @@ type RegisterUserPayload struct {
 //	@Accept			json
 //	@Produce		json
 //	@Param			payload	body		RegisterUserPayload	true	"User credentials"
-//	@Success		201		{object}	string				"Regitered"
+//	@Success		201		{object}	UserWithToken		"User Registered"
 //	@Failure		400		{object}	error
 //	@Failure		500		{object}	error
 //	@Router			/authentication/user [post]
@@ -54,6 +59,7 @@ func (app *application) registerUserHandler(w http.ResponseWriter, r *http.Reque
 
 	plainToken := uuid.New().String()
 	// store
+	// hash the token for storage but keep the plain for email
 	hash := sha256.Sum256([]byte(plainToken))
 	hashToken := hex.EncodeToString(hash[:])
 
@@ -71,8 +77,14 @@ func (app *application) registerUserHandler(w http.ResponseWriter, r *http.Reque
 		}
 		return
 	}
+
+	userWithToken := UserWithToken{
+		User:  user,
+		Token: plainToken,
+	}
+
 	// mail
-	if err := app.jsonResponse(w, http.StatusCreated, nil); err != nil {
+	if err := app.jsonResponse(w, http.StatusCreated, userWithToken); err != nil {
 		app.internalServerError(w, r, err)
 	}
 
