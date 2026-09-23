@@ -1,4 +1,7 @@
 export APP_ADDR=":3000"
+export EXTERNAL_URL="localhost:3000"
+export SENDGRID_API_KEY="**********"
+export FROM_EMAIL="Your-verified-sendgrid-email"
 
 export POSTGRES_DB="dbName"
 export POSTGRES_USER="username"
